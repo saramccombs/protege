@@ -16,8 +16,6 @@ const PostAJobForm = ({
 }) => {
   const [fileValue, setFileValue] = useState(undefined)
 
-  console.log(jobData)
-
   function recievingLogo(logo) {
     setFileValue(logo)
     recievingLogo2(logo)
@@ -27,7 +25,7 @@ const PostAJobForm = ({
     <div className='lg:w-3/5 mx-auto'>
       <Formik
         initialValues={{
-          jobTitle: jobData ? `${jobData.jobTitle}` : '',
+          jobtitle: jobData ? `${jobData.jobtitle}` : '',
           roleFocus: jobData ? `${jobData.roleFocus}` : '',
           positionType: jobData ? `${jobData.positionType}` : '',
           jobDescription: jobData ? `${jobData.jobDescription}` : '',
@@ -40,7 +38,7 @@ const PostAJobForm = ({
           companyHQ: jobData ? `${jobData.companyHQ}` : '',
         }}
         validationSchema={Yup.object({
-          jobTitle: Yup.string().required('Job title is a required field.'),
+          jobtitle: Yup.string().required('Job title is a required field.'),
           roleFocus: Yup.string().required('Please select a focus area.'),
           positionType: Yup.string().required('Please select a position type.'),
           jobDescription: Yup.string().required(
@@ -57,7 +55,8 @@ const PostAJobForm = ({
           companyDescription: Yup.string().required(
             'Please give a brief description of the company and culture.'
           ),
-          companyLogo: Yup.mixed(),
+          companyLogo: Yup.mixed().required('Please provide a .png format image of your company logo')
+            .test(file => file && file.type === 'image/png'),
           companyHQ: Yup.string().required(
             'Please provide a location for your office headquarters.'
           ),
@@ -71,7 +70,7 @@ const PostAJobForm = ({
             <div className='shadow-md border-t-4 border-teal-500'>
               <h2
                 style={{ backgroundImage: `url(${backgroundImage})` }}
-                className='bg-cover text-blue-500 font-bold p-4 bg-blue-100 text-xl'
+                className='bg-cover text-blue-900 font-bold p-4 bg-blue-100 text-xl'
               >
                 About the Role
               </h2>
@@ -80,21 +79,21 @@ const PostAJobForm = ({
                 <div className='mb-3 flex flex-col'>
                   <label
                     htmlFor='job-title'
-                    className='text-blue-500 font-semibold mb-2'
+                    className='text-blue-900 font-semibold mb-2'
                   >
                     Job Title
                   </label>
 
                   <Field
                     id='job-title'
-                    name='jobTitle'
+                    name='jobtitle'
                     className='input'
                     type='text'
                     autoComplete='off'
                   ></Field>
 
                   <ErrorMessage
-                    name='jobTitle'
+                    name='jobtitle'
                     component='span'
                     className='input-error'
                   />
@@ -104,12 +103,12 @@ const PostAJobForm = ({
                   <div className='flex flex-col md:w-1/2 mb-3 md:mr-6'>
                     <label
                       htmlFor='role-focus'
-                      className='text-blue-500 font-semibold'
+                      className='text-blue-900 font-semibold'
                     >
                       Role Focus
                     </label>
 
-                    <span className='text-blue-200 text-xs mb-2 tracking-tight '>
+                    <span className='text-blue-500 text-xs mb-2 tracking-tight '>
                       Frontend, Backend, Full-Stack
                     </span>
 
@@ -142,12 +141,12 @@ const PostAJobForm = ({
                   <div className='flex flex-col md:w-1/2 mb-3'>
                     <label
                       htmlFor='positionType'
-                      className='text-blue-500 font-semibold'
+                      className='text-blue-900 font-semibold'
                     >
                       Position Type
                     </label>
 
-                    <span className='text-blue-200 text-xs mb-2 tracking-tight '>
+                    <span className='text-blue-500 text-xs mb-2 tracking-tight '>
                       Full-time, Part-time, or Contract?
                     </span>
 
@@ -178,7 +177,7 @@ const PostAJobForm = ({
                 <div className='flex flex-col mb-3'>
                   <label
                     htmlFor='job-description'
-                    className='text-blue-500 font-semibold mb-2'
+                    className='text-blue-900 font-semibold mb-2'
                   >
                     Job Description
                   </label>
@@ -206,12 +205,12 @@ const PostAJobForm = ({
                 <div className='flex flex-col'>
                   <label
                     htmlFor='how-to-apply'
-                    className='text-blue-500 font-semibold'
+                    className='text-blue-900 font-semibold'
                   >
                     How To Apply
                   </label>
 
-                  <span className='text-blue-200 text-xs tracking-tight mb-2'>
+                  <span className='text-blue-500 text-xs tracking-tight mb-2'>
                     Email Address or link to 3rd party application page
                   </span>
 
@@ -220,6 +219,7 @@ const PostAJobForm = ({
                     name='howToApply'
                     className='input'
                     type='text'
+                    placeholder='http://'
                   ></Field>
 
                   <ErrorMessage
@@ -235,7 +235,7 @@ const PostAJobForm = ({
               <div>
                 <h2
                   style={{ backgroundImage: `url(${backgroundImage})` }}
-                  className='bg-cover text-blue-500 p-4 font-bold bg-blue-100 text-xl'
+                  className='bg-cover text-blue-900 p-4 font-bold bg-blue-100 text-xl'
                 >
                   About the Company
                 </h2>
@@ -245,7 +245,7 @@ const PostAJobForm = ({
                     <div className='flex flex-col md:w-1/2 md:mr-6 mb-3 md:mb-0'>
                       <label
                         htmlFor='companyName'
-                        className='text-blue-500 font-semibold mb-2'
+                        className='text-blue-900 font-semibold mb-2'
                       >
                         Company Name
                       </label>
@@ -268,7 +268,7 @@ const PostAJobForm = ({
                     <div className='flex flex-col md:w-1/2'>
                       <label
                         htmlFor='companyWebsite'
-                        className='text-blue-500 font-semibold mb-2'
+                        className='text-blue-900 font-semibold mb-2'
                       >
                         Company Website
                       </label>
@@ -279,6 +279,7 @@ const PostAJobForm = ({
                         className='input'
                         title='url of the company'
                         type='url'
+                        placeholder='http://'
                       />
 
                       <ErrorMessage
@@ -292,7 +293,7 @@ const PostAJobForm = ({
                     <div className='flex flex-col md:w-1/2 md:mr-6 mb-3'>
                       <label
                         htmlFor='companyEmail'
-                        className='text-blue-500 font-semibold mb-2'
+                        className='text-blue-900 font-semibold mb-2'
                       >
                         Email
                       </label>
@@ -314,7 +315,7 @@ const PostAJobForm = ({
                     <div className='flex flex-col md:w-1/2 mb-3'>
                       <label
                         htmlFor='companyLogo'
-                        className='text-blue-500 font-semibold mb-2'
+                        className='text-blue-900 font-semibold mb-2'
                       >
                         Logo
                       </label>
@@ -325,6 +326,7 @@ const PostAJobForm = ({
                         component={LogoUpload}
                         recievingLogo={recievingLogo}
                         value={fileValue}
+                        setFieldValue={formik.setFieldValue}
                       />
 
                       <ErrorMessage
@@ -337,7 +339,7 @@ const PostAJobForm = ({
                   <div className='flex flex-col mb-3'>
                     <label
                       htmlFor='companyDescription'
-                      className='text-blue-500 font-semibold mb-2'
+                      className='text-blue-900 font-semibold mb-2'
                     >
                       Company Description
                     </label>
@@ -365,12 +367,12 @@ const PostAJobForm = ({
                   <div className='flex flex-col'>
                     <label
                       htmlFor='companyHQ'
-                      className='text-blue-500 font-semibold'
+                      className='text-blue-900 font-semibold'
                     >
                       Company Headquarters
                     </label>
 
-                    <span className='text-blue-200 text-xs tracking-tight mb-2'>
+                    <span className='text-blue-500 text-xs tracking-tight mb-2'>
                       These are remote job listings, but where is your main
                       office?
                     </span>

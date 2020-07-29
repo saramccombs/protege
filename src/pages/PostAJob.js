@@ -27,7 +27,6 @@ const PostAJob = () => {
 
   function recievingTemplateApproval(e) {
     setStatus(3)
-    console.log(companyLogo)
     sendJobToDB({ jobData, companyLogo })
   }
 
@@ -49,7 +48,7 @@ const PostAJob = () => {
         companyDescription: data.jobData.companyDescription,
         howToApply: data.jobData.howToApply,
         jobDescription: data.jobData.jobDescription,
-        jobtitle: data.jobData.jobTitle,
+        jobtitle: data.jobData.jobtitle,
         positionType: data.jobData.positionType,
         postedAt: postDate,
         roleFocus: data.jobData.roleFocus,
@@ -71,7 +70,7 @@ const PostAJob = () => {
           ease: 'easeIn',
         }}
       >
-        <h1 className='text-lg md:text-2xl text-blue-500 font-bold text-center leading-snug'>
+        <h1 className='text-lg md:text-2xl text-blue-900 font-bold text-center leading-snug'>
           Inexperienced doesn’t mean incapable. <br />
           Fill your role with ambition.
         </h1>

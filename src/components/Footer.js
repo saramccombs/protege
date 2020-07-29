@@ -23,7 +23,7 @@ const Footer = () => {
       `https://api.convertkit.com/v3/tags/${tagId}/subscribe`,
       options
     ).then(alert("You've been subscribed to the Protege.dev email!"))
-     setEmail('')
+    setEmail('')
   }
 
   return (
@@ -44,14 +44,14 @@ const Footer = () => {
         >
           <div className='flex flex-col md:flex-row justify-center items-center'>
             <label
-              className='text-blue-500 text-lg md:mr-6 font-semibold text-center md:text-left'
+              className='text-blue-900 text-lg md:mr-6 font-semibold text-center md:text-left'
               htmlFor='newsletter-email'
             >
               Sign up for our mailing list!
             </label>
 
             <input
-              value = {email}
+              value={email}
               data-cy='mailing-list-signup'
               type='email'
               className='px-4 py-1 w-full md:w-2/5 my-3 md:my-0'
@@ -71,7 +71,7 @@ const Footer = () => {
             </button>
           </div>
 
-          <p className='text-center text-sm mt-3 text-blue-300'>
+          <p className='text-center text-sm mt-3 text-blue-700'>
             Stay up to date on improvements to Protege.dev and when new
             opportunities arrive!
           </p>
@@ -109,7 +109,7 @@ const Footer = () => {
             <ul className='text-right mb-3'>
               <li className='mb-1'>
                 <Link
-                  className='text-blue-400 opacity-75 hover:opacity-100'
+                  className='text-blue-800 opacity-75 hover:opacity-100'
                   to={ROUTES.JOB_BOARD}
                 >
                   Find a Job
@@ -118,7 +118,7 @@ const Footer = () => {
 
               <li className='mb-1'>
                 <Link
-                  className='text-blue-400 opacity-75 hover:opacity-100'
+                  className='text-blue-800 opacity-75 hover:opacity-100'
                   to={ROUTES.LEARNING}
                 >
                   Learning Resources
@@ -127,7 +127,7 @@ const Footer = () => {
 
               <li>
                 <Link
-                  className='text-blue-400 opacity-75 hover:opacity-100'
+                  className='text-blue-800 opacity-75 hover:opacity-100'
                   to={ROUTES.POST_A_JOB}
                 >
                   Post a Job
@@ -135,7 +135,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  className='text-blue-400 opacity-75 hover:opacity-100'
+                  className='text-blue-800 opacity-75 hover:opacity-100'
                   href={'https://github.com/drewclem/protege/issues'}
                   target='_'
                 >
@@ -148,6 +148,7 @@ const Footer = () => {
               href='https://twitter.com/devprotege'
               className='text-teal-300 hover:text-teal-600 transition-colors ease-in-out duration-75 w-6'
               target='_blank'
+              rel='noopener noreferrer'
             >
               <svg
                 className='fill-current'
@@ -169,7 +170,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='m-4 flex-col mx-auto text-center text-gray-600 tracking-wide'>
+      <div className='m-4 flex-col mx-auto text-center text-blue-600 tracking-wide'>
         Copyright 2020 © Protege.dev
       </div>
     </motion.footer>
